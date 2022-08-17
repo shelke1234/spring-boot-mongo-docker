@@ -1,21 +1,35 @@
-apiVersion: v1
-kind: ReplicationController
+## Spring Boot App
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  labels:
-    name: springboot
-  name: spring-controller
+  name: springappdeployment
 spec:
-  replicas: 1
+  replicas: 2
+  selector:
+    matchLabels:
+      app: springapp
   template:
     metadata:
+      name: springapppod
       labels:
-        name: springboot
+        app: springapp
     spec:
-      imagePullSecrets:
-      - name: dockerreposecret
       containers:
-      - image: dhananjayshelke/spring-boot-mongo:latest
-        name: springboot
+      - name: springappcontainer
+        image: dhananjayshelke/spring-boot-mongo:latest
         ports:
-        - name: springboot
-          containerPort: 8080   
+        - containerPort: 8080
+        env:
+        - name: MONGO_DB_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: springappconfigmap
+              key: username
+        - name: MONGO_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: springappsecrets
+              key: password
+        - name: MONGO_DB_HOSTNAME
+          value: mongo
+---
