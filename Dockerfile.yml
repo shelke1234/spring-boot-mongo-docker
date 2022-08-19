@@ -10,4 +10,4 @@ COPY target/atson-corp-homepage-1.0.jar $PROJECT_HOME/atson-corp-homepage-1.0.ja
 
 WORKDIR $PROJECT_HOME
 EXPOSE 8080
-CMD ["java" ,"-jar","./atson-corp-homepage.jar"]
+CMD ["java" ,"-jar","./atson-corp-homepage-1.0.jar"]
