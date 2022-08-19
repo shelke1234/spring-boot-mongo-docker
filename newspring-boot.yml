@@ -10,7 +10,7 @@ spec:
       app: atsonhome
   template:
     metadata:
-      name: springapppod
+      name: atsonhome
       labels:
         app: atsonhome
     spec:
