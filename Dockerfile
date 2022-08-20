@@ -6,7 +6,7 @@ RUN apk update && apk add /bin/sh
 RUN mkdir -p /opt/app
 ENV PROJECT_HOME /opt/app
 
-COPY target/atson-corp-payment.jar $PROJECT_HOME/atson-corp-payment.jar
+COPY target/atson-corp-payment-1.0.jar $PROJECT_HOME/atson-corp-payment.jar
 
 WORKDIR $PROJECT_HOME
 EXPOSE 8080
