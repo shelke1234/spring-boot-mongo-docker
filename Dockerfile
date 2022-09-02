@@ -1,13 +1,9 @@
+
+#jdk
 FROM openjdk:8-alpine
+WORKDIR /app
+COPY --from=build /app/target/zuul-0.0.1-SNAPSHOT.jar /app 
 
-# Required for starting application up.
-RUN apk update && apk add /bin/sh
+EXPOSE 9999
 
-RUN mkdir -p /opt/app
-ENV PROJECT_HOME /opt/app
-
-COPY target/spring-boot-mongo-1.0.jar $PROJECT_HOME/spring-boot-mongo.jar
-
-WORKDIR $PROJECT_HOME
-EXPOSE 8080
-CMD ["java" ,"-jar","./spring-boot-mongo.jar"]
+CMD ["java", "-jar", "zuul-0.0.1-SNAPSHOT.jar"] 
