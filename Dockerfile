@@ -1,7 +1,6 @@
 
 #jdk
 FROM openjdk:11.0.10-jre
-RUN apk update && apk add /bin/sh
 RUN mkdir -p /opt/app
 ENV PROJECT_HOME /opt/app
 #COPY --from=build /app/target/zuul-0.0.1-SNAPSHOT.jar /app 
